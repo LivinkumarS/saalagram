@@ -110,7 +110,8 @@ export async function google(req, res, next) {
         const { password, ...rest } = newUser._doc;
         const token = jwt.sign(
           { id: newUser._id, isAdmin: newUser.isAdmin },
-          process.env.AUTH_SECRET,{expiresIn:'7d'}
+          process.env.AUTH_SECRET,
+          { expiresIn: "7d" }
         );
         res
           .status(200)
