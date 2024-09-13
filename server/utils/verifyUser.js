@@ -9,7 +9,7 @@ export const verifyUser = async (req, res, next) => {
   
   jwt.verify(token, process.env.AUTH_SECRET, (err, user) => {
     if (err) {
-      return next(errorHandler(400, "User Not Verified..!"));
+      return next(errorHandler(400, "User Not Verified(Try Sign In Again...!)..!"));
     }
     req.user = user;
     next();
