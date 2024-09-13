@@ -52,6 +52,8 @@ export default function PostPage() {
           const { username, ...rest } = data;
 
           setPostUser({ username });
+        } else {
+          setError(data.message);
         }
       } catch (error) {
         setError(error.message);
@@ -185,6 +187,8 @@ export default function PostPage() {
             </div>
           </div>
 
+          {error && <Alert color={"red"}>{error}</Alert>}
+
           <div className="w-full  p-3 md:p-8">
             <p
               className="md:text-lg text-sm font-semibold  post-content"
@@ -199,7 +203,7 @@ export default function PostPage() {
           </div>
         </div>
       )}
-      {error && <Alert color={"red"}>{error}</Alert>}
+
       <div className="flex flex-col gap-5 items-center justify-center p-3 sm:p-6">
         <h1 className="font-extrabold text-lg sm:text-2xl  text-center bg-clip-text text-transparent bg-gradient-to-tr from-purple-700 to-blue-600 bg-transparent">
           Recent Posts
