@@ -108,9 +108,11 @@ export default function PostPage() {
       const res = await fetch(`/api/post/likepost/${postId}`, {
         method: "PUT",
       });
+      const data = await res.json();
       if (res.ok) {
-        const data = await res.json();
         setPost(data);
+      }else{
+        setError(data.message)
       }
     } catch (error) {
       setError(error.message);
