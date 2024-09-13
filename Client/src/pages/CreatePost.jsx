@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Progress } from "flowbite-react";
-import { app } from "../firebase";
+import { app } from "../firebase"; 
 import {
   ref,
   getStorage,
@@ -99,9 +99,9 @@ export default function CreatePost() {
               setFormData({ ...formData, category: e.target.value });
             }}
           >
-            <option value="uncategorized">Select Category</option>
-            <option value="react">ReactJS</option>
-            <option value="node">NodeJS</option>
+            <option value="general">General</option>
+            <option value="web-dev">WebDev</option>
+            <option value="personal">Personal</option>
           </Select>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-between border-2 border-dashed border-teal-500 p-3">

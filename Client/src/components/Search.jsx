@@ -116,9 +116,9 @@ export default function Search() {
             onChange={handleChange}
           >
             <option value={""}>Select</option>
-            <option value={"uncategorized"}>Uncategorized</option>
-            <option value={"react"}>ReactJS</option>
-            <option value={"node"}>NodeJS</option>
+            <option value={"general"}>General</option>
+            <option value={"web-dev"}>WebDev</option>
+            <option value={"personal"}>Personal</option>
           </Select>
         </div>
         <Button
