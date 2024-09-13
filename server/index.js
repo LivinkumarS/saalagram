@@ -15,6 +15,8 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+console.log(process.env.DATABASE);
+
 mongoose
   .connect(process.env.DATABASE)
   .then(() => {
@@ -24,8 +26,6 @@ mongoose
     console.log("Vanakkam Da Mapla...!");
     console.log(err);
   });
-
-
 
 app.use(express.json());
 app.use(cookieParser());
@@ -44,9 +44,9 @@ const __dirname = path.resolve();
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
-app.get('*',(req,res)=>{
-  res.sendFile(path.join(__dirname,'client','dist','index.html'))
-})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 // Error Handling
 app.use((err, req, res, next) => {
