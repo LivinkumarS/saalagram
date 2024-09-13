@@ -1,0 +1,124 @@
+import React, { useState } from "react";
+import { json, Link, useNavigate } from "react-router-dom";
+import { Label, TextInput, Button, Alert } from "flowbite-react";
+import Oath from "../components/Oath";
+
+export default function SignUp() {
+  const [formData, setFormData] = useState({});
+  const [isLoading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate=useNavigate();
+  
+
+  async function handleSubmit(event) {
+    setLoading(true);
+    event.preventDefault();
+    if (!formData.username || !formData.email || !formData.password) {
+      setLoading(false);
+      setErrorMessage("All Fields Are Required");
+      return;
+    }
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const response = await res.json();
+      if (response.success === false) {
+        setErrorMessage(response.message);
+      } else {
+        setErrorMessage(null);
+      }
+      if(res.ok){
+        navigate('/sign-in');
+      }
+      // console.log(response);
+    } catch (err) {
+      setErrorMessage(err.message)
+    }
+    setLoading(false);
+  }
+
+  async function handleChange(event) {
+    const data = event.target.value;
+    const tar = event.target.id;
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [tar]: data.trim(),
+      };
+    });
+  }
+
+  return (
+    <div className="min-h-screen mt-20">
+      <div className="gap-5 flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
+        {/* left-side  */}
+        <div className="flex-1">
+          <Link
+            to="/"
+            className="self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
+          >
+            <span className="px-2 pb-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
+              Saala's
+            </span>
+            Blog
+          </Link>
+          <p className="mt-4 font-semibold">
+          "Saala's Blog" is a personal platform built using the MERN stack (React, Node, MongoDB, Express) to showcase my skills in web development. It features blog posts on technical topics, highlighting my expertise in coding and creative web design, offering insights for tech enthusiasts.
+          </p>
+        </div>
+        {/* right-side  */}
+        <div className="flex-1">
+          <form onSubmit={handleSubmit}>
+            <div className="">
+              <Label value="UserName" />
+              <TextInput
+                type="text"
+                placeholder="User Name"
+                id="username"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="">
+              <Label value="Email" />
+              <TextInput
+                type="text"
+                placeholder="something@hello.com"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="">
+              <Label value="Password" />
+              <TextInput
+                type="password"
+                placeholder="******"
+                id="password"
+                onChange={handleChange}
+              />
+            </div>
+            <Button
+              className="mx-auto my-4 w-auto md:w-96"
+              size="sm"
+              type="submit"
+              isProcessing={isLoading}
+              gradientDuoTone="purpleToBlue"
+            >
+              Submit
+            </Button>
+            <Oath/>
+            <div className="gap-2 flex">
+              <span>Have an account?</span>
+              <Link className="text-blue-600" to="/sign-in">
+                Sign In
+              </Link>
+            </div>
+          </form>
+          {errorMessage && <Alert color="red">{errorMessage}</Alert>}
+        </div>
+      </div>
+    </div>
+  );
+}
