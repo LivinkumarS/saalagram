@@ -1,9 +1,58 @@
-import { Button, Textarea, TextInput, Label } from "flowbite-react";
-import React from "react";
+import { Button, Textarea, TextInput, Alert } from "flowbite-react";
+import React, { useState } from "react";
 
 export default function Contact() {
   const keys = JSON.parse(import.meta.env.VITE_API_KEY);
-  console.log(keys.EMAIL_API);
+
+  const [formData, setFormData] = useState({ access_key: keys.EMAIL_API });
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  function handleChange(e) {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [e.target.id]: e.target.value,
+      };
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSuccess(false);
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.message ||
+      formData.email === "" ||
+      formData.message === "" ||
+      formData.name === ""
+    ) {
+      return setError("All Fields Are Required");
+    }
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setFormData({
+          access_key: keys.EMAIL_API,
+          name: "",
+          email: "",
+          message: "",
+        });
+        setSuccess(true);
+      } else {
+        setError("Server Error...!");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  }
 
   return (
     <div className=" overflow-hidden contact-bg min-h-screen relative flex flex-col items-center justify-center">
@@ -14,8 +63,7 @@ export default function Contact() {
       />
 
       <form
-        action="https://api.web3forms.com/submit"
-        method="POST"
+        onSubmit={handleSubmit}
         className="z-10 w-full max-w-xl px-8 mx-auto flex flex-col gap-4"
       >
         <p className="font-semibold text-center italic">
@@ -28,19 +76,37 @@ export default function Contact() {
         <h1 className="text-xl sm:text-2xl font-extrabold text-center">
           Contact Form
         </h1>
-        <TextInput type="hidden" name="access_key" value={keys.EMAIL_API} />
         <div>
-          <TextInput placeholder="Name" type="text" name="name" required />
+          <TextInput
+            value={formData.name}
+            placeholder="Name"
+            type="text"
+            name="name"
+            id="name"
+            required
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <TextInput placeholder="Email" type="email" name="email" required />
+          <TextInput
+            value={formData.email}
+            placeholder="Email"
+            type="email"
+            name="email"
+            id="email"
+            required
+            onChange={handleChange}
+          />
         </div>
         <div>
           <Textarea
+            value={formData.message}
             placeholder="Message"
             row="2"
             name="message"
+            id="message"
             required
+            onChange={handleChange}
           ></Textarea>
         </div>
         <Button
@@ -53,6 +119,16 @@ export default function Contact() {
         <h1 className="mx-auto text-2xl font-extrabold text-gray-500 italic">
           Eat... Sleep... Code... Repeat...♾️
         </h1>
+        {success && (
+          <Alert className="w-full mt-4 font-semibold" color={"green"}>
+            Submitted Successfully...!
+          </Alert>
+        )}
+        {error && (
+          <Alert className="w-full mt-4 font-semibold" color={"red"}>
+            {error}
+          </Alert>
+        )}
       </form>
     </div>
   );
