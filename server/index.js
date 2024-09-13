@@ -8,7 +8,6 @@ import PostRouter from "./Routes/post.route.js";
 import CommentRouter from "./Routes/comment.route.js";
 import quoteRouter from "./Routes/quote.route.js";
 import path from "path";
-import cors from 'cors'
 
 dotenv.config();
 
@@ -27,11 +26,6 @@ mongoose
   });
 
 
-app.use(cors(
-  {
-    origin:"http://localhost:5173/"
-  }
-))
 
 app.use(express.json());
 app.use(cookieParser());
