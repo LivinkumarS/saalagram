@@ -40,10 +40,10 @@ app.use("/api/quote", quoteRouter);
 
 const __dirname = path.resolve();
 
-app.use(express.static(path.join(__dirname, "/client/dist")));
+app.use(express.static(path.join(__dirname, "/Client/dist")));
 
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "Client", "index.html"));
+  res.sendFile(path.join(__dirname, "Client", "dist", "index.html"));
 });
 
 // Error Handling
