@@ -4,13 +4,17 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+const keys = JSON.parse(import.meta.env.VITE_API_KEY);
+
+
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
+  apiKey: keys.VITE_API_KEY,
   authDomain: "saalagrammern.firebaseapp.com",
   projectId: "saalagrammern",
   storageBucket: "saalagrammern.appspot.com",
   messagingSenderId: "568199515543",
-  appId: "1:568199515543:web:c6ad6efc490b13ad2fc8d2"
+  appId: "1:568199515543:web:c6ad6efc490b13ad2fc8d2",
 };
 
 // Initialize Firebase

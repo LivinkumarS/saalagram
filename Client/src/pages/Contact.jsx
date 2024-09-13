@@ -2,6 +2,8 @@ import { Button, Textarea, TextInput, Label } from "flowbite-react";
 import React from "react";
 
 export default function Contact() {
+  const keys = JSON.parse(import.meta.env.VITE_API_KEY);
+  console.log(keys.EMAIL_API);
 
   return (
     <div className=" overflow-hidden contact-bg min-h-screen relative flex flex-col items-center justify-center">
@@ -26,11 +28,7 @@ export default function Contact() {
         <h1 className="text-xl sm:text-2xl font-extrabold text-center">
           Contact Form
         </h1>
-        <TextInput
-          type="hidden"
-          name="access_key"
-          value={"72ed829b-94d5-4898-87f3-3b4934cec02a"}
-        />
+        <TextInput type="hidden" name="access_key" value={keys.EMAIL_API} />
         <div>
           <TextInput placeholder="Name" type="text" name="name" required />
         </div>

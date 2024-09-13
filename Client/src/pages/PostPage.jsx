@@ -20,7 +20,6 @@ export default function PostPage() {
   const [postId, setPostId] = useState(null);
   const [postUser, setPostUser] = useState(null);
   console.log(postUser);
-  
 
   useEffect(() => {
     const fetchRecentPosts = async () => {
@@ -37,11 +36,11 @@ export default function PostPage() {
         setRecentPostErrors(error.message);
       }
     };
-    
+
     fetchRecentPosts();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchPostUser = async () => {
       if (!post) {
         return;
@@ -52,7 +51,7 @@ export default function PostPage() {
         if (res.ok) {
           const { username, ...rest } = data;
 
-          setPostUser({username});
+          setPostUser({ username });
         }
       } catch (error) {
         setError(error.message);
@@ -60,7 +59,7 @@ export default function PostPage() {
     };
 
     fetchPostUser();
-  },[post])
+  }, [post]);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -136,51 +135,53 @@ export default function PostPage() {
             </Link>
           </div>
 
-          {postUser? (
-            <h1 className="font-semibold text-xs sm:text-sm text-gray-600 w-full sm:w-[500px] mx-auto">
-              <span className="text-black dark:text-white">Post By: </span>{" "}
-              {postUser.username}
-            </h1>
-          ):null}
-          <div className=" flex flex-col gap-1 w-full sm:w-[500px] mx-auto">
-            <img
-              src={post.image}
-              alt="Post image"
-              className="self-center w-full mx-auto object-cover shadow-lg dark:shadow-white dark:shadow-md"
-            />
-
-            <div className="flex flex-col gap-1 items-start">
-              <h1 className=" text-gray-500 md:text-sm text-xs font-semibold">
-                CreatedAt: {new Date(post.updatedAt).toLocaleDateString()}
+          <div className="mx-3 sm:m-0">
+            {postUser ? (
+              <h1 className="font-semibold text-xs sm:text-sm text-gray-600 w-full sm:w-[500px] mx-auto">
+                <span className="text-black dark:text-white">Post By: </span>{" "}
+                {postUser.username}
               </h1>
-              {currentUser ? (
-                <div className="flex gap-1 flex-row items-center justify-start">
-                  <FaThumbsUp
-                    className="cursor-pointer"
-                    onClick={handleLikePost}
-                    fill={
-                      post.likes.includes(currentUser._id) ? "blue" : "gray"
-                    }
-                  />
-                  {post.numberOfLikes > 0 ? (
-                    <p className="text-sm font-semibold text-gray-500">
-                      {post.numberOfLikes === 1
-                        ? "1 Like"
-                        : post.numberOfLikes + " Likes"}
-                    </p>
-                  ) : null}
-                </div>
-              ) : (
-                <div className="flex flex-row gap-2 text-xs text-red-600 font-semibold items-center justify-start">
-                  You Must Sign In To access like section!!!
-                  <Link
-                    to={"/sign-in"}
-                    className="self-center text-blue-600 hover:underline"
-                  >
-                    SignIn
-                  </Link>
-                </div>
-              )}
+            ) : null}
+            <div className=" flex flex-col gap-1 w-full sm:w-[500px] mx-auto">
+              <img
+                src={post.image}
+                alt="Post image"
+                className="self-center w-full mx-auto object-cover shadow-lg dark:shadow-white dark:shadow-md"
+              />
+
+              <div className="flex flex-col gap-1 items-start">
+                <h1 className=" text-gray-500 md:text-sm text-xs font-semibold">
+                  CreatedAt: {new Date(post.updatedAt).toLocaleDateString()}
+                </h1>
+                {currentUser ? (
+                  <div className="flex gap-1 flex-row items-center justify-start">
+                    <FaThumbsUp
+                      className="cursor-pointer"
+                      onClick={handleLikePost}
+                      fill={
+                        post.likes.includes(currentUser._id) ? "blue" : "gray"
+                      }
+                    />
+                    {post.numberOfLikes > 0 ? (
+                      <p className="text-sm font-semibold text-gray-500">
+                        {post.numberOfLikes === 1
+                          ? "1 Like"
+                          : post.numberOfLikes + " Likes"}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : (
+                  <div className="flex flex-row gap-2 text-xs text-red-600 font-semibold items-center justify-start">
+                    You Must Sign In To access like section!!!
+                    <Link
+                      to={"/sign-in"}
+                      className="self-center text-blue-600 hover:underline"
+                    >
+                      SignIn
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
