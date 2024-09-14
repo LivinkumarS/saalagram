@@ -12,7 +12,7 @@ export default function RecentPost({ post }) {
           className="w-full rounded-t-lg h-[200px] group-hover:h-[168px] object-cover"
         />
         <div className="flex flex-col items-start p-2 justify-center">
-          <p className="text-xl font-semibold">{post.title}</p>
+          <p className="text-xl font-semibold w-full">{post.title.length>25?post.title.slice(0,25)+'...':post.title}</p>
           <p className="text-md ">{post.category}</p>
         </div>
         <Link
