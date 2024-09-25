@@ -45,7 +45,7 @@ export default function DashPost() {
 
     try {
       const res = await fetch(
-        `api/post/getposts/?userId=${currentUser._id}&&startIndex=${startIndex}`
+        `https://saalagram-1.onrender.com/api/post/getposts/?userId=${currentUser._id}&&startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -63,7 +63,7 @@ export default function DashPost() {
 
     try {
       const res = await fetch(
-        `api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        `https://saalagram-1.onrender.com/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
         }
