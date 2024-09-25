@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?limit=4`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/post/getposts?limit=4`);
         const data = await res.json();
         if (res.ok) {
           setRecentPosts(data.posts);
@@ -30,7 +30,7 @@ export default function Home() {
 
     const fetchQuote = async () => {
       try {
-        const res = await fetch(`/api/quote/getquote`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/quote/getquote`);
 
         const data = await res.json();
         console.log(data);

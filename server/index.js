@@ -7,11 +7,18 @@ import cookieParser from "cookie-parser";
 import PostRouter from "./Routes/post.route.js";
 import CommentRouter from "./Routes/comment.route.js";
 import quoteRouter from "./Routes/quote.route.js";
+import cors from "cors";
 import path from "path";
 
 dotenv.config();
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 const port = process.env.PORT || 3000;
 

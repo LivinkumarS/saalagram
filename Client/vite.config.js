@@ -7,9 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000/",
+        target: "https://saalagram-1.onrender.com",
         secure: false,
       },
-    },
+    }, 
   },
 });
