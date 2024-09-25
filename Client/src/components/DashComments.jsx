@@ -10,7 +10,7 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getcomments`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/comment/getcomments`);
         if (res.ok) {
           const data = await res.json();
           setComments(data.comments);
@@ -34,7 +34,7 @@ export default function DashComments() {
 
     try {
       const res = await fetch(
-        `/api/comment/deletecomment/${currentUser._id}/${comId}`,
+        `https://saalagram-1.onrender.com/api/comment/deletecomment/${currentUser._id}/${comId}`,
         {
           method: "DELETE",
         }

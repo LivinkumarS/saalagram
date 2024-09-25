@@ -26,7 +26,7 @@ export default function UpdatePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?postId=${postId}`, {
+        const res = await fetch(`https://saalagram-1.onrender.com/api/post/getposts?postId=${postId}`, {
           method: "GET",
         });
 
@@ -82,7 +82,7 @@ export default function UpdatePost() {
 
     try {
       const res = await fetch(
-        `/api/post/updatepost/${formData._id}/${formData.userId}`,
+        `https://saalagram-1.onrender.com/api/post/updatepost/${formData._id}/${formData.userId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

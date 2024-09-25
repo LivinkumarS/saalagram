@@ -46,7 +46,7 @@ export default function DashProfile() {
   async function handleSignout() {
     setUpdationError(null);
     try {
-      const response = await fetch("/api/user/signout", {
+      const response = await fetch("https://saalagram-1.onrender.com/api/user/signout", {
         method: "POST",
       });
       const res = await response.json();
@@ -66,7 +66,7 @@ export default function DashProfile() {
     setUpdationError(null);
     dispatch(deleteStart());
     try {
-      const res = await fetch(`api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`https://saalagram-1.onrender.com/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -98,7 +98,7 @@ export default function DashProfile() {
         setUpdationSuccess(null);
         return setUpdationError(currentUserError);
       }
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`https://saalagram-1.onrender.com/api/user/update/${currentUser._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

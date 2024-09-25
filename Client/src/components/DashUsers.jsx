@@ -27,7 +27,7 @@ export default function DashUsers() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await fetch(`/api/user/getusers/${currentUser._id}`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/user/getusers/${currentUser._id}`);
         const data = await res.json();
         if (res.ok) {
           setUserList(data.usersWithoutPassword);
@@ -46,7 +46,7 @@ export default function DashUsers() {
   async function handleShowMore() {
     try {
       const res = await fetch(
-        `api/user/getusers/${currentUser._id}?startIndex=${userList.length}`
+        `https://saalagram-1.onrender.com/api/user/getusers/${currentUser._id}?startIndex=${userList.length}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -66,7 +66,7 @@ export default function DashUsers() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `api/user/deleteaccount/${currentUser._id}/${userIdToDelete}`,
+        `https://saalagram-1.onrender.com/api/user/deleteaccount/${currentUser._id}/${userIdToDelete}`,
         {
           method: "DELETE",
         }

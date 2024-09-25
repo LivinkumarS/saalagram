@@ -14,7 +14,7 @@ export default function Comment({ comment, onLike, onDelete, onEditSubmit }) {
   useEffect(() => {
     const findUser = async () => {
       try {
-        const res = await fetch(`/api/user/${comment.userId}`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/user/${comment.userId}`);
         const data = await res.json();
         if (res.ok) {
           setUser(data);

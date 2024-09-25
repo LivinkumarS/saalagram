@@ -28,7 +28,7 @@ export default function DashSideBar() {
 
   async function handleSignout() {
     try {
-      const response = await fetch("/api/user/signout", {
+      const response = await fetch("https://saalagram-1.onrender.com/api/user/signout", {
         method: "POST",
       });
       const res = await response.json();

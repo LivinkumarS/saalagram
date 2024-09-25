@@ -36,7 +36,7 @@ export default function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       try {
-        const res = await fetch(`/api/post/getposts?${searchQuery}`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/post/getposts?${searchQuery}`);
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);

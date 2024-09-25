@@ -14,7 +14,7 @@ export default function CommentSection({ postId }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getPostComments/${postId}`, {
+        const res = await fetch(`https://saalagram-1.onrender.com/api/comment/getPostComments/${postId}`, {
           method: "GET",
         });
 
@@ -39,7 +39,7 @@ export default function CommentSection({ postId }) {
     }
 
     try {
-      const res = await fetch(`/api/comment/create`, {
+      const res = await fetch(`https://saalagram-1.onrender.com/api/comment/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -69,7 +69,7 @@ export default function CommentSection({ postId }) {
     }
 
     try {
-      const res = await fetch(`/api/comment/likeComment/${comId}`, {
+      const res = await fetch(`https://saalagram-1.onrender.com/api/comment/likeComment/${comId}`, {
         method: "PUT",
       });
 
@@ -95,7 +95,7 @@ export default function CommentSection({ postId }) {
   async function handleDelete(comId) {
     try {
       const res = await fetch(
-        `/api/comment/deletecomment/${currentUser._id}/${comId}`,
+        `https://saalagram-1.onrender.com/api/comment/deletecomment/${currentUser._id}/${comId}`,
         {
           method: "DELETE",
         }
@@ -116,7 +116,7 @@ export default function CommentSection({ postId }) {
   async function handleEditComment(comId, editComment) {
     try {
       const res = await fetch(
-        `/api/comment/editcomment/${currentUser._id}/${comId}`,
+        `https://saalagram-1.onrender.com/api/comment/editcomment/${currentUser._id}/${comId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
