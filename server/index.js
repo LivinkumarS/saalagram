@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://saalagram.netlify.app",
+    origin: "https://saalagram.netlify.app/",
   })
 );
 
