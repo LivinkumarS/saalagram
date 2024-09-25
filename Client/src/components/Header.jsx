@@ -60,12 +60,9 @@ export default function Header() {
       <Navbar className="border-b-2">
         <Link
           to="/"
-          className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
+          className=" shadow-lg dark:shadow-white dark:shadow-md rounded-tl-none rounded-lg px-2 py-1  self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
         >
-          <span className="px-2 pb-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
-            Saala's
-          </span>
-          Blog
+          <i className="font-bold text-xl sm:text-2xl">Saala's Blog</i>
         </Link>
         <form onSubmit={handleSearch}>
           <TextInput
@@ -80,7 +77,7 @@ export default function Header() {
         <Button className="w-12 h-10 lg:hidden" color="gray" pill>
           <AiOutlineSearch onClick={()=>{navigate('/search')}}/>
         </Button>
-        <div className="flex gap-5 sm:order-2">
+        <div className="flex gap-3 sm:order-2">
           <Button
             className="w-12 h-10 hidden sm:inline"
             color="gray"

@@ -68,12 +68,9 @@ export default function SignIn() {
         <div className="flex-1">
           <Link
             to="/"
-            className="self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
+            className="rounded-lg rounded-tl-none shadow-lg dark:shadow-white dark:shadow-md self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
           >
-            <span className="px-2 pb-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
-              Saala's
-            </span>
-            Blog
+            <i className="font-bold text-xl sm:text-2xl p-8">Saala's Blog</i>
           </Link>
           <p className="mt-4 font-semibold">
           "Saala's Blog" is a personal platform built using the MERN stack (React, Node, MongoDB, Express) to showcase my skills in web development. It features blog posts on technical topics, highlighting my expertise in coding and creative web design, offering insights for tech enthusiasts.

@@ -55,7 +55,7 @@ export default function Contact() {
   }
 
   return (
-    <div className=" overflow-hidden contact-bg min-h-screen relative flex flex-col items-center justify-center">
+    <div className="my-10 sm:m-0 overflow-hidden contact-bg min-h-screen relative flex flex-col items-center justify-center">
       <img
         src="https://firebasestorage.googleapis.com/v0/b/saalagrammern.appspot.com/o/saalaimage.png?alt=media&token=b5f04aaf-83d0-42f5-9c9f-8815d30a04e9"
         alt=""
