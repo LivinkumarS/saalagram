@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import { errorHandler } from "./error.js";
-
+ 
 export const verifyUser = async (req, res, next) => {
-  const token = req.body.access_token;
+  const token = req.body.token;
   if (!token || token === "") {
     return next(
       errorHandler(401, `User Not Verified (Try Sign In Again...!)..!,${token}`)
