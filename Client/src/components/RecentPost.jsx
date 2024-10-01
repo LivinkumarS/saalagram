@@ -19,7 +19,7 @@ export default function RecentPost({ post }) {
           to={`/post/${post.slug}`}
           className="w-full hidden group-hover:inline"
         >
-          <Button className="mx-auto mb-1" size={'xs'} gradientDuoTone={"purpleToBlue"}>
+          <Button className="mx-auto mb-1" size={'xs'} gradientDuoTone={"greenToBlue"}>
             See Post
           </Button>
         </Link>

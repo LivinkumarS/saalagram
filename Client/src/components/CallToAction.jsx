@@ -11,7 +11,7 @@ export default function CallToAction() {
         </h1>
         <Link to="/contact">
           <Button
-            gradientDuoTone={"purpleToBlue"}
+            gradientDuoTone={"greenToBlue"}
             className="rounded-tl-lg rounded-bl-none  rounded-br-none rounded-tr-none"
           >
             Contact Me!

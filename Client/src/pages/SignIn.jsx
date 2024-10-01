@@ -74,9 +74,9 @@ export default function SignIn() {
         <div className="flex-1">
           <Link
             to="/"
-            className="rounded-lg rounded-tl-none shadow-lg dark:shadow-white dark:shadow-md self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
+            className="rounded-lg rounded-tl-none shadow-lg shadow-green-500 dark:shadow-md self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
           >
-            <i className="font-bold text-xl sm:text-2xl p-8">Saala's Blog</i>
+            <i className="font-bold text-xl sm:text-2xl p-8 text-green-500">Saala's Blog</i>
           </Link>
           <p className="mt-4 font-semibold">
             "Saala's Blog" is a personal platform built using the MERN stack
@@ -114,7 +114,7 @@ export default function SignIn() {
               size="sm"
               type="submit"
               isProcessing={loading}
-              gradientDuoTone="purpleToBlue"
+              gradientDuoTone="greenToBlue"
             >
               Submit
             </Button>

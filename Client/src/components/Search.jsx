@@ -123,7 +123,7 @@ export default function Search() {
         </div>
         <Button
           type="submit"
-          gradientDuoTone={"purpleToBlue"}
+          gradientDuoTone={"greenToBlue"}
           outline
           className="w-full"
         >

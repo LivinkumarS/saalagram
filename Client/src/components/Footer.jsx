@@ -8,7 +8,7 @@ export default function FooterComp() {
     <Footer className="border border-t-8 border-teal-800 p-5 flex-col">
       <div className="flex justify-between gap-10 flex-wrap w-screen pr-10">
         <Link to="/" className="sm:ml-4 font-semibold text-lg flex items-center justify-center">
-          <i className="font-bold text-xl sm:text-2xl">Saala's Blog</i>
+          <i className="font-bold text-xl sm:text-2xl text-green-500">Saala's Blog</i>
         </Link>
 
         

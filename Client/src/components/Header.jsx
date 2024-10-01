@@ -64,9 +64,9 @@ export default function Header() {
       <Navbar className="border-b-2">
         <Link
           to="/"
-          className=" shadow-lg dark:shadow-white dark:shadow-md rounded-tl-none rounded-lg px-2 py-1  self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
+          className=" shadow-lg shadow-green-500 dark:shadow-md rounded-tl-none rounded-lg px-2 py-1  self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
         >
-          <i className="font-bold text-xl sm:text-2xl">Saala's Blog</i>
+          <i className="font-bold text-xl sm:text-2xl text-green-500">Saala's Blog</i>
         </Link>
         <form onSubmit={handleSearch}>
           <TextInput
@@ -124,7 +124,7 @@ export default function Header() {
                 size="xs"
                 className="self-center"
                 outline
-                gradientDuoTone="purpleToPink"
+                gradientDuoTone="greenToBlue"
               >
                 Sign-In
               </Button>

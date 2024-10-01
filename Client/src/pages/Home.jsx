@@ -59,7 +59,7 @@ export default function Home() {
     <div className="min-h-screen sm:mx-9 my-3">
       <div className="flex flex-col gap-8 mx-auto w-full p-1 items-center">
         <div className="w-full p-5 flex flex-col gap-8">
-          <h1 className="font-extrabold text-xl sm:text-2xl bg-clip-text text-transparent bg-gradient-to-tr from-purple-700 to-blue-600 bg-transparent">
+          <h1 className="font-extrabold text-xl sm:text-2xl bg-clip-text text-transparent bg-gradient-to-tr from-green-500 to-yellow-200 bg-transparent">
             Welcome To Saala's Blog Website...!
           </h1>
 

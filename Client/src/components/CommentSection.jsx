@@ -189,7 +189,7 @@ export default function CommentSection({ postId }) {
                   {comment ? 200 - comment.length : 200} Charecters Remaining
                 </p>
                 <Button
-                  gradientDuoTone={"purpleToBlue"}
+                  gradientDuoTone={"greenToBlue"}
                   size={"sm"}
                   className="sm:px-4"
                   onClick={handleCommentSubmit}

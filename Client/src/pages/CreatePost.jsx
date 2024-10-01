@@ -151,7 +151,7 @@ export default function CreatePost() {
         />
         <Button
           type="submit"
-          gradientDuoTone={"purpleToBlue"}
+          gradientDuoTone={"greenToBlue"}
           className="w-100 mt-16 sm:mt-12 mb-12"
           outline
           onClick={handlePostSubmit}

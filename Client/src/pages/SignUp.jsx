@@ -59,9 +59,9 @@ export default function SignUp() {
         <div className="flex-1">
           <Link
             to="/"
-            className="rounded-lg rounded-tl-none shadow-lg dark:shadow-white dark:shadow-md self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
+            className="rounded-lg rounded-tl-none shadow-lg shadow-green-500 dark:shadow-md self-center whitespace-nowrap text-3xl sm:text-5xl font-bold dark:text-white"
           >
-            <i className="font-bold text-xl sm:text-2xl p-3 pt-0">Saala's Blog</i>
+            <i className="font-bold text-xl text-green-500 sm:text-2xl p-3 pt-0">Saala's Blog</i>
           </Link>
           <p className="mt-4 font-semibold">
           "Saala's Blog" is a personal platform built using the MERN stack (React, Node, MongoDB, Express) to showcase my skills in web development. It features blog posts on technical topics, highlighting my expertise in coding and creative web design, offering insights for tech enthusiasts.
@@ -105,7 +105,7 @@ export default function SignUp() {
               size="sm"
               type="submit"
               isProcessing={isLoading}
-              gradientDuoTone="purpleToBlue"
+              gradientDuoTone="greenToBlue"
             >
               Submit
             </Button>

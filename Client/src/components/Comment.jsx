@@ -72,7 +72,7 @@ export default function Comment({ comment, onLike, onDelete, onEditSubmit }) {
                     onChange={(e) => setEditComment(e.target.value)}
                     className="flex-1"
                   />
-                  <Button gradientDuoTone={"purpleToBlue"} onClick={handleEditSubmit}size={'xs'}>Update</Button>
+                  <Button gradientDuoTone={"greenToBlue"} onClick={handleEditSubmit}size={'xs'}>Update</Button>
                 </div>
               ) : (
                 <p className="font-semibold text-sm sm:text-lg">
