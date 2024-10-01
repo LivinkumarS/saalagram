@@ -34,7 +34,7 @@ export default function Oath() {
       if (res.ok) {
         const { token, ...signData } = data;
         dispatch(signInSuccess(signData));
-        localStorage.setItem(token);
+        localStorage.setItem("access_token",token);
         navigate("/");
       }
     } catch (error) {
