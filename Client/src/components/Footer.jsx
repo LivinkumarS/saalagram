@@ -61,7 +61,7 @@ export default function FooterComp() {
             <Footer.Link className="cursor-pointer" href="https://www.linkedin.com/in/livinkumar-saravanan-666731255" target="_blank">
               <FaLinkedin />
             </Footer.Link>
-            <Footer.Link className="cursor-pointer" href="https://www.linkedin.com/in/livinkumar-saravanan-666731255" target="_blank">
+            <Footer.Link className="cursor-pointer" href="https://wa.me/7904535371" target="_blank">
               <FaWhatsapp />
             </Footer.Link>
           </Footer.LinkGroup>
