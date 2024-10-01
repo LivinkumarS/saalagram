@@ -7,8 +7,6 @@ import { initializeApp } from "firebase/app";
 
 const keys = JSON.parse(import.meta.env.VITE_API_KEY);
 
-console.log(keys);
-
 
 const firebaseConfig = {
   apiKey: keys.VITE_API_KEY,

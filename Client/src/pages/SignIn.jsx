@@ -11,7 +11,7 @@ import Oath from "../components/Oath";
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({email:'',password:''});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -64,6 +64,7 @@ export default function SignIn() {
     } catch (err) {
       dispatch(signInFailure(err.message));
     }
+    setFormData({email:'',password:''})
   }
 
   return (
@@ -95,6 +96,7 @@ export default function SignIn() {
                 placeholder="something@hello.com"
                 id="email"
                 onChange={handleChange}
+                value={formData.email}
               />
             </div>
             <div className="">
@@ -104,6 +106,7 @@ export default function SignIn() {
                 placeholder="******"
                 id="password"
                 onChange={handleChange}
+                value={formData.password}
               />
             </div>
             <Button

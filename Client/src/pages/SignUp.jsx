@@ -4,7 +4,7 @@ import { Label, TextInput, Button, Alert } from "flowbite-react";
 import Oath from "../components/Oath";
 
 export default function SignUp() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({email:'',username:'',password:''});
   const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate=useNavigate();
@@ -38,6 +38,7 @@ export default function SignUp() {
       setErrorMessage(err.message)
     }
     setLoading(false);
+    setFormData({email:'',username:'',password:''})
   }
 
   async function handleChange(event) {
@@ -76,6 +77,7 @@ export default function SignUp() {
                 placeholder="User Name"
                 id="username"
                 onChange={handleChange}
+                value={formData.username}
               />
             </div>
             <div className="">
@@ -85,6 +87,7 @@ export default function SignUp() {
                 placeholder="something@hello.com"
                 id="email"
                 onChange={handleChange}
+                value={formData.email}
               />
             </div>
             <div className="">
@@ -94,6 +97,7 @@ export default function SignUp() {
                 placeholder="******"
                 id="password"
                 onChange={handleChange}
+                value={formData.password}
               />
             </div>
             <Button
