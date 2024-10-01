@@ -16,20 +16,25 @@ export default function Oath() {
     provider.setCustomParameters({ prompt: "select_account" });
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
-      const res = await fetch("https://saalagram-1.onrender.com/api/auth/google", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: resultsFromGoogle.user.displayName,
-          email: resultsFromGoogle.user.email,
-          profilePhoto: resultsFromGoogle.user.photoURL,
-        }),
-      });
+      const res = await fetch(
+        "https://saalagram-1.onrender.com/api/auth/google",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: resultsFromGoogle.user.displayName,
+            email: resultsFromGoogle.user.email,
+            profilePhoto: resultsFromGoogle.user.photoURL,
+          }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
-        dispatch(signInSuccess(data));
+        const { token, ...signData } = data;
+        dispatch(signInSuccess(signData));
+        localStorage.setItem(token);
         navigate("/");
       }
     } catch (error) {
