@@ -28,14 +28,18 @@ export default function DashSideBar() {
 
   async function handleSignout() {
     try {
-      const response = await fetch("https://saalagram-1.onrender.com/api/user/signout", {
-        method: "POST",
-      });
+      const response = await fetch(
+        "https://saalagram-1.onrender.com/api/user/signout",
+        {
+          method: "POST",
+        }
+      );
       const res = await response.json();
       if (!response.ok) {
         console.log(res);
       } else {
         dispatch(signoutSuccess());
+        localStorage.clear();
         navigate("/");
       }
     } catch (err) {

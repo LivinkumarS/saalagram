@@ -15,7 +15,7 @@ router.get("/test", test);
 router.put("/update/:userId", verifyUser, updateUser);
 router.delete("/delete/:userId", verifyUser, deleteUser);
 router.post("/signout", signoutUser);
-router.get("/getusers/:userId", verifyUser, getusers);
+router.post("/getusers/:userId", verifyUser, getusers);
 router.get("/:userId", getuser);
 router.delete("/deleteaccount/:userId/:accId", verifyUser, deleteaccount);
 

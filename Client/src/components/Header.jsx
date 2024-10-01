@@ -33,14 +33,18 @@ export default function Header() {
 
   async function handleSignout() {
     try {
-      const response = await fetch("https://saalagram-1.onrender.com/api/user/signout", {
-        method: "POST",
-      });
+      const response = await fetch(
+        "https://saalagram-1.onrender.com/api/user/signout",
+        {
+          method: "POST",
+        }
+      );
       const res = await response.json();
       if (!response.ok) {
         console.log(res);
       } else {
         dispatch(signoutSuccess());
+        localStorage.clear();
         navigate("/");
       }
     } catch (err) {
@@ -50,9 +54,9 @@ export default function Header() {
 
   async function handleSearch(e) {
     e.preventDefault();
-    const searchParam=new URLSearchParams(url.search);
-    searchParam.set('searchTerm',searchTerm)
-    navigate(`/search?searchTerm=${searchTerm}`)
+    const searchParam = new URLSearchParams(url.search);
+    searchParam.set("searchTerm", searchTerm);
+    navigate(`/search?searchTerm=${searchTerm}`);
   }
 
   return (
@@ -75,7 +79,11 @@ export default function Header() {
           />
         </form>
         <Button className="w-12 h-10 lg:hidden" color="gray" pill>
-          <AiOutlineSearch onClick={()=>{navigate('/search')}}/>
+          <AiOutlineSearch
+            onClick={() => {
+              navigate("/search");
+            }}
+          />
         </Button>
         <div className="flex gap-3 sm:order-2">
           <Button

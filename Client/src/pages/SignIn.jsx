@@ -8,9 +8,6 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import Oath from "../components/Oath";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -48,7 +45,7 @@ export default function SignIn() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({...formData,token:localStorage.getItem('access_token')}),
         }
       );
       const response = await res.json();
@@ -61,8 +58,7 @@ export default function SignIn() {
         const { token, ...signData } = response;
         dispatch(signInSuccess(signData));
         console.log(token);
-        
-        cookies.set("access_token", token);
+        localStorage.setItem("access_token", token);
         navigate("/");
       }
     } catch (err) {

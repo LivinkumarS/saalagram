@@ -14,9 +14,12 @@ export default function CommentSection({ postId }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/comment/getPostComments/${postId}`, {
-          method: "GET",
-        });
+        const res = await fetch(
+          `https://saalagram-1.onrender.com/api/comment/getPostComments/${postId}`,
+          {
+            method: "GET",
+          }
+        );
 
         const data = await res.json();
         if (res.ok) {
@@ -39,15 +42,19 @@ export default function CommentSection({ postId }) {
     }
 
     try {
-      const res = await fetch(`https://saalagram-1.onrender.com/api/comment/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: comment,
-          postId,
-          userId: currentUser._id,
-        }),
-      });
+      const res = await fetch(
+        `https://saalagram-1.onrender.com/api/comment/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            content: comment,
+            postId,
+            userId: currentUser._id,
+            token: localStorage.getItem("access_token"),
+          }),
+        }
+      );
 
       const data = await res.json();
 
@@ -69,9 +76,14 @@ export default function CommentSection({ postId }) {
     }
 
     try {
-      const res = await fetch(`https://saalagram-1.onrender.com/api/comment/likeComment/${comId}`, {
-        method: "PUT",
-      });
+      const res = await fetch(
+        `https://saalagram-1.onrender.com/api/comment/likeComment/${comId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: localStorage.getItem("access_token") }),
+        }
+      );
 
       const data = await res.json();
 
@@ -98,6 +110,8 @@ export default function CommentSection({ postId }) {
         `https://saalagram-1.onrender.com/api/comment/deletecomment/${currentUser._id}/${comId}`,
         {
           method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: localStorage.getItem("access_token") }),
         }
       );
       const data = await res.json();
@@ -120,7 +134,10 @@ export default function CommentSection({ postId }) {
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content: editComment }),
+          body: JSON.stringify({
+            content: editComment,
+            token: localStorage.getItem("access_token"),
+          }),
         }
       );
       if (res.ok) {
@@ -200,7 +217,7 @@ export default function CommentSection({ postId }) {
                       onDelete={handleDelete}
                       onEditSubmit={handleEditComment}
                     />
-                    <hr className="border border-gray-500"/>
+                    <hr className="border border-gray-500" />
                   </>
                 );
               })}

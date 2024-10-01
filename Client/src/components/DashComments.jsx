@@ -10,7 +10,16 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/comment/getcomments`);
+        const res = await fetch(
+          `https://saalagram-1.onrender.com/api/comment/getcomments`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              token: localStorage.getItem("access_token"),
+            }),
+          }
+        );
         if (res.ok) {
           const data = await res.json();
           setComments(data.comments);
@@ -37,6 +46,8 @@ export default function DashComments() {
         `https://saalagram-1.onrender.com/api/comment/deletecomment/${currentUser._id}/${comId}`,
         {
           method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: localStorage.getItem("access_token") }),
         }
       );
       const data = await res.json();

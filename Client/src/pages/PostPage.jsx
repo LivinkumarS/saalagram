@@ -24,7 +24,9 @@ export default function PostPage() {
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/post/getposts?limit=3`);
+        const res = await fetch(
+          `https://saalagram-1.onrender.com/api/post/getposts?limit=3`
+        );
         if (res.ok) {
           const data = await res.json();
           setRecentPosts(data.posts);
@@ -46,7 +48,9 @@ export default function PostPage() {
         return;
       }
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/user/${post.userId}`);
+        const res = await fetch(
+          `https://saalagram-1.onrender.com/api/user/${post.userId}`
+        );
         const data = await res.json();
         if (res.ok) {
           const { username, ...rest } = data;
@@ -68,7 +72,9 @@ export default function PostPage() {
       setError(null);
       setLoading(true);
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/post/getposts?slug=${postSlug}`);
+        const res = await fetch(
+          `https://saalagram-1.onrender.com/api/post/getposts?slug=${postSlug}`
+        );
         const data = await res.json();
         if (res.ok) {
           setPost(data.posts[0]);
@@ -105,14 +111,19 @@ export default function PostPage() {
     }
 
     try {
-      const res = await fetch(`https://saalagram-1.onrender.com/api/post/likepost/${postId}`, {
-        method: "PUT",
-      });
+      const res = await fetch(
+        `https://saalagram-1.onrender.com/api/post/likepost/${postId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({token:localStorage.getItem("access_token")}),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         setPost(data);
-      }else{
-        setError(data.message)
+      } else {
+        setError(data.message);
       }
     } catch (error) {
       setError(error.message);

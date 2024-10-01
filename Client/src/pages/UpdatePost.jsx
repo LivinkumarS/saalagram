@@ -26,9 +26,12 @@ export default function UpdatePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/post/getposts?postId=${postId}`, {
-          method: "GET",
-        });
+        const res = await fetch(
+          `https://saalagram-1.onrender.com/api/post/getposts?postId=${postId}`,
+          {
+            method: "GET",
+          }
+        );
 
         const data = await res.json();
 
@@ -77,7 +80,6 @@ export default function UpdatePost() {
       return setErrorMessage("All Fields Are Required!");
     }
 
-
     const sendData = JSON.stringify(formData);
 
     try {
@@ -91,6 +93,7 @@ export default function UpdatePost() {
             content: formData.content,
             image: formData.image,
             category: formData.category,
+            token: localStorage.getItem("access_token"),
           }),
         }
       );
@@ -172,7 +175,6 @@ export default function UpdatePost() {
               setFormData({ ...formData, image: null });
             }}
           />
-          
         </div>
 
         {formData.title ? (

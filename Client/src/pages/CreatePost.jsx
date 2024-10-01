@@ -63,7 +63,7 @@ export default function CreatePost() {
       const res = await fetch("https://saalagram-1.onrender.com/api/post/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({...formData,token:localStorage.getItem('access_token')}),
       });
 
       const response = await res.json();

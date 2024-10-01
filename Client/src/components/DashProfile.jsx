@@ -30,9 +30,11 @@ export default function DashProfile() {
   const dispatch = useDispatch();
   const [imageFile, setImageFile] = useState(null);
   const [imageFileURL, setImageFileURL] = useState(null);
-  const { currentUser, error: currentUserError,loading } = useSelector(
-    (state) => state.user
-  );
+  const {
+    currentUser,
+    error: currentUserError,
+    loading,
+  } = useSelector((state) => state.user);
   const [showModel, setShowModel] = useState(false);
   const [uploadingErrorMessage, setUploadingErrorMessage] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -46,14 +48,18 @@ export default function DashProfile() {
   async function handleSignout() {
     setUpdationError(null);
     try {
-      const response = await fetch("https://saalagram-1.onrender.com/api/user/signout", {
-        method: "POST",
-      });
+      const response = await fetch(
+        "https://saalagram-1.onrender.com/api/user/signout",
+        {
+          method: "POST",
+        }
+      );
       const res = await response.json();
       if (!response.ok) {
         setUpdationError(res.message);
       } else {
         dispatch(signoutSuccess());
+        localStorage.clear();
         navigate("/");
       }
     } catch (err) {
@@ -66,10 +72,14 @@ export default function DashProfile() {
     setUpdationError(null);
     dispatch(deleteStart());
     try {
-      const res = await fetch(`https://saalagram-1.onrender.com/api/user/delete/${currentUser._id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `https://saalagram-1.onrender.com/api/user/delete/${currentUser._id}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: localStorage.getItem("access_token") }),
+        }
+      );
       const response = await res.json();
       if (res.ok) {
         dispatch(deleteSuccess());
@@ -98,11 +108,17 @@ export default function DashProfile() {
         setUpdationSuccess(null);
         return setUpdationError(currentUserError);
       }
-      const res = await fetch(`https://saalagram-1.onrender.com/api/user/update/${currentUser._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://saalagram-1.onrender.com/api/user/update/${currentUser._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            token: localStorage.getItem("access_token"),
+          }),
+        }
+      );
       const response = await res.json();
       if (res.ok) {
         setUpdationError(null);
@@ -237,18 +253,19 @@ export default function DashProfile() {
           outline
           disabled={imageUploading || loading}
         >
-          {loading? "loading...!":"Update"}
+          {loading ? "loading...!" : "Update"}
         </Button>
         {currentUser.isAdmin && (
-          <Link to={'/create-post'}>
-          <Button
-            disabled={imageUploading}
-            type="button"
-            className="w-full"
-            gradientDuoTone="purpleToBlue"
-          >
-            Create Post
-          </Button></Link>
+          <Link to={"/create-post"}>
+            <Button
+              disabled={imageUploading}
+              type="button"
+              className="w-full"
+              gradientDuoTone="purpleToBlue"
+            >
+              Create Post
+            </Button>
+          </Link>
         )}
       </form>
       <div className="flex justify-between text-red-500 font-semibold">

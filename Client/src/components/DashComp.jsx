@@ -27,7 +27,14 @@ export default function DashComp() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/user/getusers/${currentUser._id}`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/user/getusers/${currentUser._id}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              token: localStorage.getItem("access_token"),
+            }),}
+        );
         const data = await res.json();
         if (res.ok) {
           setUsers(data.usersWithoutPassword);
@@ -57,7 +64,14 @@ export default function DashComp() {
     };
     const fetchComments = async () => {
       try {
-        const res = await fetch(`https://saalagram-1.onrender.com/api/comment/getcomments`);
+        const res = await fetch(`https://saalagram-1.onrender.com/api/comment/getcomments`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              token: localStorage.getItem("access_token"),
+            }),}
+        );
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
