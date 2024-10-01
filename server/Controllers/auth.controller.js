@@ -56,15 +56,12 @@ export async function signin(req, res, next) {
         id: userDB._id,
         isAdmin: userDB.isAdmin,
       },
-      process.env.AUTH_SECRET,
-      { secure: true, sameSite: 'Strict' }
+      process.env.AUTH_SECRET
     );
 
     const { password: pass, ...rest } = userDB._doc;
 
-    res
-      .status(200)
-      .json({...rest,token});
+    res.status(200).json({ ...rest, token });
   } catch (err) {
     next(err);
   }
@@ -77,13 +74,10 @@ export async function google(req, res, next) {
     if (googleUser) {
       const token = jwt.sign(
         { id: googleUser._id, isAdmin: googleUser.isAdmin },
-        process.env.AUTH_SECRET,
-        { secure: true, sameSite: 'Strict' }
+        process.env.AUTH_SECRET
       );
       const { password, ...rest } = googleUser._doc;
-      res
-        .status(200)
-        .json({...rest,token});
+      res.status(200).json({ ...rest, token });
     } else {
       const pass =
         "google" +
@@ -108,12 +102,9 @@ export async function google(req, res, next) {
         const { password, ...rest } = newUser._doc;
         const token = jwt.sign(
           { id: newUser._id, isAdmin: newUser.isAdmin },
-          process.env.AUTH_SECRET,
-          { secure: true, sameSite: 'Strict' }
+          process.env.AUTH_SECRET
         );
-        res
-          .status(200)
-          .json({...rest,token});
+        res.status(200).json({ ...rest, token });
       } catch (err) {
         next(errorHandler(400, err.message));
       }
