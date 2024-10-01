@@ -64,8 +64,7 @@ export async function signin(req, res, next) {
 
     res
       .status(200)
-      .cookie("access_token", token, { httpOlny: true })
-      .json(rest);
+      .json({...rest,token});
   } catch (err) {
     next(err);
   }
@@ -79,13 +78,12 @@ export async function google(req, res, next) {
       const token = jwt.sign(
         { id: googleUser._id, isAdmin: googleUser.isAdmin },
         process.env.AUTH_SECRET,
-        { expires: 7, secure: true, sameSite: 'Strict' }
+        { expiresIn: '7d', secure: true, sameSite: 'Strict' }
       );
       const { password, ...rest } = googleUser._doc;
       res
         .status(200)
-        .cookie("access_token", token, { httpOlny: true })
-        .json(rest);
+        .json({...rest,token});
     } else {
       const pass =
         "google" +
@@ -111,12 +109,11 @@ export async function google(req, res, next) {
         const token = jwt.sign(
           { id: newUser._id, isAdmin: newUser.isAdmin },
           process.env.AUTH_SECRET,
-          { expires: 7, secure: true, sameSite: 'Strict' }
+          { expiresIn: '7d', secure: true, sameSite: 'Strict' }
         );
         res
           .status(200)
-          .cookie("access_token", token, { httpOlny: true })
-          .json(rest);
+          .json({...rest,token});
       } catch (err) {
         next(errorHandler(400, err.message));
       }

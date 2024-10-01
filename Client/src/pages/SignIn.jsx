@@ -8,11 +8,14 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import Oath from "../components/Oath";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export default function SignIn() {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
-  const {loading,error:errorMessage}=useSelector(state=>state.user)
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -28,8 +31,7 @@ export default function SignIn() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    dispatch(signInStart())
+    dispatch(signInStart());
 
     if (
       !formData.email ||
@@ -37,28 +39,33 @@ export default function SignIn() {
       formData.email === "" ||
       formData.password === ""
     ) {
-      dispatch(signInFailure("All Fields Are Required"))
+      dispatch(signInFailure("All Fields Are Required"));
     }
 
     try {
-      const res = await fetch("https://saalagram-1.onrender.com/api/auth/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        "https://saalagram-1.onrender.com/api/auth/signin",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
       const response = await res.json();
       // console.log(response);
 
       if (response.success === false) {
-        dispatch(signInFailure(response.message))
-      } 
-      if(res.ok) {
-        dispatch(signInSuccess(response));
+        dispatch(signInFailure(response.message));
+      }
+      if (res.ok) {
+        const { token, ...signData } = response;
+        dispatch(signInSuccess(signData));
+        cookies.set("access_token", token, { expires: "7d" });
         navigate("/");
       }
     } catch (err) {
-      dispatch(signInFailure(err.message))
-    } 
+      dispatch(signInFailure(err.message));
+    }
   }
 
   return (
@@ -73,7 +80,11 @@ export default function SignIn() {
             <i className="font-bold text-xl sm:text-2xl p-8">Saala's Blog</i>
           </Link>
           <p className="mt-4 font-semibold">
-          "Saala's Blog" is a personal platform built using the MERN stack (React, Node, MongoDB, Express) to showcase my skills in web development. It features blog posts on technical topics, highlighting my expertise in coding and creative web design, offering insights for tech enthusiasts.
+            "Saala's Blog" is a personal platform built using the MERN stack
+            (React, Node, MongoDB, Express) to showcase my skills in web
+            development. It features blog posts on technical topics,
+            highlighting my expertise in coding and creative web design,
+            offering insights for tech enthusiasts.
           </p>
         </div>
         {/* right-side  */}
@@ -106,7 +117,7 @@ export default function SignIn() {
             >
               Submit
             </Button>
-            <Oath/>
+            <Oath />
             <div className="gap-2 flex">
               <span>Don't Have an account?</span>
               <Link className="text-blue-600" to="/sign-up">
