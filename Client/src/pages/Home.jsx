@@ -71,7 +71,7 @@ export default function Home() {
           <CallToAction className="mx-auto" />
         </div>
         <div className="flex flex-col gap-5 items-center justify-center p-3 sm:p-6">
-          <h1 className="font-extrabold text-lg sm:text-2xl  text-center bg-clip-text text-transparent bg-gradient-to-tr from-purple-700 to-blue-600 bg-transparent">
+          <h1 className="font-extrabold text-lg sm:text-2xl  text-center bg-clip-text text-transparent bg-gradient-to-tr from-green-500 to-yellow-200 bg-transparent">
             Recent Posts
           </h1>
 
@@ -90,7 +90,7 @@ export default function Home() {
           <div className=" mx-auto">
             <Link
               to={`/search?limit=${totalPosts}`}
-              className="text-xl font-bold text-center text-blue-600 hover:underline cursor-pointer"
+              className="text-xl underline font-bold text-center text-blue-600 hover:underline cursor-pointer"
             >
               See All Posts
             </Link>

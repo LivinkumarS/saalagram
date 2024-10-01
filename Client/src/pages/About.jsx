@@ -3,7 +3,7 @@ import React from "react";
 export default function About() {
   return (
     <div className="px-5 min-h-screen h-auto flex flex-col items-center justify-center gap-10">
-      <div className=" my-5 sm:my-10 text-xs sm:text-lg font-semibold borderDecoration text-white sm:font-bold">
+      <div className=" my-2 sm:my-10 text-xs sm:text-lg font-semibold borderDecoration text-white sm:font-bold">
         Welcome to <b>Saala's Blog</b>, a dynamic space where technology meets
         creativity! Built using the powerful MERN stack (MongoDB, Express,
         React, Node.js), this blog is your ultimate destination for insightful
