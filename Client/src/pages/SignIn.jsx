@@ -60,6 +60,8 @@ export default function SignIn() {
       if (res.ok) {
         const { token, ...signData } = response;
         dispatch(signInSuccess(signData));
+        console.log(token);
+        
         cookies.set("access_token", token);
         navigate("/");
       }
