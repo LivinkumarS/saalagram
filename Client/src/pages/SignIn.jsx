@@ -60,7 +60,7 @@ export default function SignIn() {
       if (res.ok) {
         const { token, ...signData } = response;
         dispatch(signInSuccess(signData));
-        cookies.set("access_token", token, { expires: "7d" });
+        cookies.set("access_token", token);
         navigate("/");
       }
     } catch (err) {
