@@ -81,7 +81,7 @@ export default function Home() {
                 return <RecentPost key={post._id} post={post} />;
               })
             ) : (
-              <h1 className="text-center font-bold text-red-600">No Posts!</h1>
+              <h1 className="text-center font-bold text-red-600">Please wait...!</h1>
             )}
           </div>
         </div>
