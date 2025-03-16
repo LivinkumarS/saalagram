@@ -166,7 +166,7 @@ export default function PostPage() {
 
               <div className="flex flex-col gap-1 items-start">
                 <h1 className=" text-gray-500 md:text-sm text-xs font-semibold">
-                  CreatedAt: {new Date(post.updatedAt).toLocaleDateString()}
+                  CreatedAt: {new Date(post.createdAt).toLocaleDateString()}
                 </h1>
                 {currentUser ? (
                   <div className="flex gap-1 flex-row items-center justify-start">
